@@ -73,4 +73,6 @@ sleep 30
 #Platform9 init
 name=`grep ipv4_address ./terraform.tfstate \
   | grep -oE '((1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])'`
-cat p9ctl.sh | ssh p9mk@$name;ssh -t p9mk@$name -- "pf9ctl config set;pf9ctl check-node;pf9ctl bootstrap p9mk --pmk-version 1.21.3-pmk.72"
+ssh -t p9mk@$name -- [ ! -d ./pf9 ] && \
+  ssh -t p9mk@$name -- "bash <(curl -sL https://pmkft-assets.s3-us-west-1.amazonaws.com/pf9ctl_setup)"; \
+  ssh -t p9mk@$name -- "pf9ctl config set;pf9ctl check-node;pf9ctl bootstrap p9mk --pmk-version 1.21.3-pmk.72"
