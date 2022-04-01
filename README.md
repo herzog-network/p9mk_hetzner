@@ -23,12 +23,16 @@ sed -i 's/docker run -v `pwd`:\/tf -w \/tf hashicorp\/terraform:1\.1\.7/terrafor
 * cd into directory
 * chmod +x deploy and destroy script
 
-The script will ask for all required information. Get your API key from Hetzner and receive all information for Platform9 like account URL or username via Platform9 WebUI.
+The script will ask for all required information. Get your API key from Hetzner and receive all information for Platform9 like account URL or username via Platform9 webUI.
+
+Final provisioning will take a while. Check the converging status in Platform9 webUI
 
 Run:   
 `./deploy.sh`
 
 ### Destroy
+
+Final provisioning needs some minutes. Every resource will be destroyed after a while.
 
 Run:  
 `./destroy.sh`
